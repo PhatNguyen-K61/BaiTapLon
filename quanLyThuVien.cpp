@@ -23,17 +23,77 @@ struct book_st
 };
 void enter(Date *input);
 bool validDay(Date *check);
-void enter(book_st *input);
-void enter(Author *input);
-void enterBooks(book_st *&input, int &numberBooks);
-void addBook(book_st *input, int &numberBooks, const book_st book);
-void enterType(char search[30]);
-void printTypeBooks(book_st *output, int numberBooks);
-void editBook(book_st *output, int &id_need_to_find, int numberBooks);
-void removeBook(book_st *output, int &id_need_to_find, int &numberBooks);
-book_st *findBookByType(book_st *input, int numberBooks, int totalBooks, char search[30]);
-int countBooksByType(book_st *input, int numberBooks, char search[30]);
-void print(book_st *output, int numberBooks);
-void arrangeBook(book_st *output, int numberBooks);
-void exportBook(FILE *file, char *path, book_st *output, int numberBooks);
-void menu(FILE *file, char *path, book_st *input, int numberBooks, int totalBooks, char search[30], int id_need_to_find);
+int main()
+{
+    FILE *file;
+    char *output_path = "./src/baiTapLon/book.dat";
+    book_st *bookList;
+    int numberBooks = 0;
+    int totalBooks;
+    char search[30];
+    int id_need_to_find;
+    bookList = (book_st *)malloc(sizeof(book_st));
+    system("color b0");
+    menu(file, output_path, bookList, numberBooks, totalBooks, search, id_need_to_find);
+    if(bookList != NULL){
+        free(bookList);
+    }
+    return EXIT_SUCCESS;
+}
+bool validDay(Date *check)
+{
+    //kiểm tra ngày tháng
+    bool validDay = true;
+    if (check->month < 0 || check->month > 12)
+    {
+        validDay = false;
+    }
+    else
+    {
+        switch (check->month)
+        {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            if (check->day < 1 || check->day > 31)
+            {
+                validDay = false;
+            }
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            if (check->day < 1 || check->day > 30)
+            {
+                validDay = false;
+            }
+            break;
+        case 2:
+            if (check->year % 4 == 0 && check->day < 1 || check->day > 29)
+            {
+                validDay = false;
+            }
+            break;
+        }
+    }
+    return validDay;
+}
+void enter(Date *input)
+{ //Nhap ngay thang nam
+    printf("\nNgay: ");
+    scanf("%d", &input->day);
+    printf("Thang: ");
+    scanf("%d", &input->month);
+    do{
+    printf("Nam: ");
+    scanf("%d", &input->year);
+    if(input->year > 2021 || input->year <= 0){
+        printf("*Nhap lai nam sinh*\n");
+    }
+    }while(input->year > 2021 || input->year <= 0);
+}
