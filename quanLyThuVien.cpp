@@ -22,6 +22,7 @@ struct book_st
     int price;
 };
 void enter(Date *input);
+void enter(Author *input);
 bool validDay(Date *check);
 int main()
 {
