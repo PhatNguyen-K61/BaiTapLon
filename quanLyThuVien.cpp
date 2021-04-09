@@ -23,6 +23,7 @@ struct book_st
 };
 void enter(Date *input);
 void enter(Author *input);
+void enter(book_st *input);
 bool validDay(Date *check);
 int main()
 {
@@ -112,4 +113,22 @@ void enter(Author *input)
             printf("- Hay nhap lai!");
         }
     } while (!validDay(input->birthday));
+}
+void enter(book_st *input)
+{ 
+    //Nhap thong tin cua 1 quyen sach (gom co ham nhap tac gia)
+    printf("\nNhap id cua sach: ");
+    fflush(stdin);
+    scanf("%d", &input->id);
+    printf("Ten: ");
+    fflush(stdin);
+    gets(input->name);
+    printf("************** Nhap thong tin tac gia **************");
+    input->author = (Author *)malloc(sizeof(Author));
+    enter(input->author);
+    fflush(stdin);
+    printf("\nThe loai: ");
+    gets(input->type);
+    printf("Gia tien: ");
+    scanf("%d", &input->price);
 }
