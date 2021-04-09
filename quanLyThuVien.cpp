@@ -97,3 +97,18 @@ void enter(Date *input)
     }
     }while(input->year > 2021 || input->year <= 0);
 }
+void enter(Author *input)
+{
+    //Nhap thong tin tac gia (gom co ham nhap ngay thang nam)
+    printf("\nNhap ten tac gia: ");
+    gets(input->name);
+    printf("-------- Nhap ngay thang nam sinh tac gia --------");
+    do
+    {
+        input->birthday = (Date *)malloc(sizeof(Date));
+        enter(input->birthday);
+        if(!validDay(input->birthday)){
+            printf("- Hay nhap lai!");
+        }
+    } while (!validDay(input->birthday));
+}
