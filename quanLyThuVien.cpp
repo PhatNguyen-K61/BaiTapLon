@@ -27,6 +27,7 @@ void enter(book_st *input);
 bool validDay(Date *check);
 void enterBooks(book_st *&input, int &numberBooks);
 int countBooksByType(book_st *input, int numberBooks, char search[30]);
+void printTypeBooks(book_st *output, int numberBooks);
 int main()
 {
     FILE *file;
@@ -165,4 +166,14 @@ int countBooksByType(book_st *input, int numberBooks, char search[30])
         }
     }
     return count;
+}
+void printTypeBooks(book_st *output, int numberBooks)
+{ 
+    //in so the loai
+    if (numberBooks != 0)
+    {
+        printf("\nTruyen tranh co %d quyen sach", countBooksByType(output, numberBooks, "truyen tranh"));
+        printf("\nTruyen kiem hiep co %d quyen sach", countBooksByType(output, numberBooks, "tai lieu"));
+        printf("\nGiao trinh co %d quyen sach\n", countBooksByType(output, numberBooks, "giao trinh"));
+    }
 }
