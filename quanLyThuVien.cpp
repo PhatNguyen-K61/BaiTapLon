@@ -26,6 +26,7 @@ void enter(Author *input);
 void enter(book_st *input);
 bool validDay(Date *check);
 void enterBooks(book_st *&input, int &numberBooks);
+int countBooksByType(book_st *input, int numberBooks, char search[30]);
 int main()
 {
     FILE *file;
@@ -151,4 +152,17 @@ void enterBooks(book_st *&input, int &numberBooks)
         printf("\n++++++++++++++++ Nhap thong tin quyen sach %d ++++++++++++++++", index + 1);
         enter(&*(input + index));
     }
+}
+int countBooksByType(book_st *input, int numberBooks, char search[30])
+{
+    //dem sach theo the loai
+    int count = 0;
+    for (int i = 0; i < numberBooks; i++)
+    {
+        if (strcmp((input + i)->type, search) == 0)
+        {
+            count++; //neu cung loai thì dem
+        }
+    }
+    return count;
 }
