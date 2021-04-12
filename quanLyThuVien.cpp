@@ -25,6 +25,7 @@ void enter(Date *input);
 void enter(Author *input);
 void enter(book_st *input);
 bool validDay(Date *check);
+void enterBooks(book_st *&input, int &numberBooks);
 int main()
 {
     FILE *file;
@@ -131,4 +132,23 @@ void enter(book_st *input)
     gets(input->type);
     printf("Gia tien: ");
     scanf("%d", &input->price);
+}
+void enterBooks(book_st *&input, int &numberBooks)
+{ 
+    //Nhap thong tin nhieu quyen sach
+    do
+    {
+        printf("->Nhap so cuon sach: ");
+        scanf("%d", &numberBooks);
+        if (numberBooks <= 0)
+        {
+            printf("Hay nhap lai !\n");
+        }
+    } while (numberBooks <= 0);
+    input = (book_st *)realloc(input, (numberBooks) * sizeof(book_st));
+    for (int index = 0; index < numberBooks; index++) //vong lap de lap ham nhap 1 quyen sach
+    {
+        printf("\n++++++++++++++++ Nhap thong tin quyen sach %d ++++++++++++++++", index + 1);
+        enter(&*(input + index));
+    }
 }
