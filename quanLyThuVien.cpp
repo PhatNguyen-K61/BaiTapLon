@@ -28,7 +28,7 @@ bool validDay(Date *check);
 void enterBooks(book_st *&input, int &numberBooks);
 int countBooksByType(book_st *input, int numberBooks, char search[30]);
 void printTypeBooks(book_st *output, int numberBooks);
-
+void editBook(book_st *output, int &id_need_to_find, int numberBooks);
 int main()
 {
     FILE *file;
