@@ -29,6 +29,7 @@ void enterBooks(book_st *&input, int &numberBooks);
 int countBooksByType(book_st *input, int numberBooks, char search[30]);
 void printTypeBooks(book_st *output, int numberBooks);
 void editBook(book_st *output, int &id_need_to_find, int numberBooks);
+void removeBook(book_st *output, int &id_need_to_find, int &numberBooks);
 int main()
 {
     FILE *file;
@@ -206,6 +207,32 @@ void editBook(book_st *output, int &id_need_to_find, int numberBooks)
     if (has_book)
     {
         printf("Sua sach thanh cong!\n");
+    }
+    else
+    {
+        printf("Khong co quyen sach nay !\n");
+    }
+}
+void removeBook(book_st *output, int &id_need_to_find, int &numberBooks)
+{ 
+    //ham xoa sach
+    bool has_book = false;
+    printf("Nhap id quyen sach: ");
+    scanf("%d", &id_need_to_find);
+    for (int index = 0; index < numberBooks; index++)
+    {
+        if ((output + index)->id == id_need_to_find)
+        {
+            for(int j = index; j < numberBooks - 1; j++){
+                *(output + j) = *(output + j + 1);
+                has_book = true;
+            }
+            numberBooks--;
+        }
+    }
+    if (has_book)
+    {
+        printf("Xoa sach thanh cong !\n");
     }
     else
     {
