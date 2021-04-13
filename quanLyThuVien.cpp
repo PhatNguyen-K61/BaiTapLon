@@ -28,6 +28,7 @@ bool validDay(Date *check);
 void enterBooks(book_st *&input, int &numberBooks);
 int countBooksByType(book_st *input, int numberBooks, char search[30]);
 void printTypeBooks(book_st *output, int numberBooks);
+void editBook(book_st *output, int &id_need_to_find, int numberBooks);
 int main()
 {
     FILE *file;
@@ -175,5 +176,39 @@ void printTypeBooks(book_st *output, int numberBooks)
         printf("\nTruyen tranh co %d quyen sach", countBooksByType(output, numberBooks, "truyen tranh"));
         printf("\nTai lieu co %d quyen sach", countBooksByType(output, numberBooks, "tai lieu"));
         printf("\nGiao trinh co %d quyen sach\n", countBooksByType(output, numberBooks, "giao trinh"));
+    }
+}
+void editBook(book_st *output, int &id_need_to_find, int numberBooks)
+{ 
+    //ham sua sach
+    int has_book = false;
+    printf("Nhap id quyen sach: ");
+    scanf("%d", &id_need_to_find);
+    for (int index = 0; index < numberBooks; index++)
+    {
+        if (id_need_to_find == (output + index)->id)
+        {
+            printf("\n======== Sua thong tin sach ========");
+            fflush(stdin);
+            printf("\nTen: ");
+            gets((output + index)->name);
+            printf("******** Nhap thong tin tac gia ********");
+            (output + index)->author = (Author *)malloc(sizeof(Author));
+            enter((output + index)->author);
+            fflush(stdin);
+            printf("\nThe loai: ");
+            gets((output + index)->type);
+            printf("Gia tien: ");
+            scanf("%d", &(output + index)->price);
+            has_book = true;
+        }
+    }
+    if (has_book)
+    {
+        printf("Sua sach thanh cong!\n");
+    }
+    else
+    {
+        printf("Khong co quyen sach nay !\n");
     }
 }
