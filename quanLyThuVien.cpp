@@ -173,7 +173,7 @@ void printTypeBooks(book_st *output, int numberBooks)
     if (numberBooks != 0)
     {
         printf("\nTruyen tranh co %d quyen sach", countBooksByType(output, numberBooks, "truyen tranh"));
-        printf("\nTruyen kiem hiep co %d quyen sach", countBooksByType(output, numberBooks, "tai lieu"));
+        printf("\nTai lieu co %d quyen sach", countBooksByType(output, numberBooks, "tai lieu"));
         printf("\nGiao trinh co %d quyen sach\n", countBooksByType(output, numberBooks, "giao trinh"));
     }
 }
