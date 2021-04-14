@@ -30,6 +30,7 @@ int countBooksByType(book_st *input, int numberBooks, char search[30]);
 void printTypeBooks(book_st *output, int numberBooks);
 void editBook(book_st *output, int &id_need_to_find, int numberBooks);
 void removeBook(book_st *output, int &id_need_to_find, int &numberBooks);
+void enterType(char search[30]);
 int main()
 {
     FILE *file;
@@ -238,4 +239,10 @@ void removeBook(book_st *output, int &id_need_to_find, int &numberBooks)
     {
         printf("Khong co quyen sach nay !\n");
     }
+}
+void enterType(char search[30])
+{
+    printf("\nNhap the loai: ");
+    fflush(stdin);
+    gets(search);
 }
