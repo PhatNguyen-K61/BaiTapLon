@@ -31,6 +31,7 @@ void printTypeBooks(book_st *output, int numberBooks);
 void editBook(book_st *output, int &id_need_to_find, int numberBooks);
 void removeBook(book_st *output, int &id_need_to_find, int &numberBooks);
 void enterType(char search[30]);
+void addBook(book_st *input, int &numberBooks, const book_st book);
 int main()
 {
     FILE *file;
@@ -245,4 +246,11 @@ void enterType(char search[30])
     printf("\nNhap the loai: ");
     fflush(stdin);
     gets(search);
+}
+void addBook(book_st *input, int &numberBooks, const book_st book)
+{ 
+    //them sach
+    numberBooks++;
+    input = (book_st *)realloc(input, numberBooks * sizeof(book_st));
+    *(input + numberBooks - 1) = book;
 }
