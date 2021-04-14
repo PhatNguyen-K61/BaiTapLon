@@ -32,6 +32,7 @@ void editBook(book_st *output, int &id_need_to_find, int numberBooks);
 void removeBook(book_st *output, int &id_need_to_find, int &numberBooks);
 void enterType(char search[30]);
 void addBook(book_st *input, int &numberBooks, const book_st book);
+book_st *findBookByType(book_st *input, int numberBooks, int totalBooks, char search[30]);
 int main()
 {
     FILE *file;
@@ -253,4 +254,21 @@ void addBook(book_st *input, int &numberBooks, const book_st book)
     numberBooks++;
     input = (book_st *)realloc(input, numberBooks * sizeof(book_st));
     *(input + numberBooks - 1) = book;
+}
+book_st *findBookByType(book_st *input, int numberBooks, int totalBooks, char search[30])
+{ 
+    //tim sach theo the loai
+    book_st *result;
+    book_st temp;
+    totalBooks = 0;
+    result = (book_st *)calloc(totalBooks, sizeof(book_st));
+    for (int index = 0; index < numberBooks; index++)
+    {
+        if (strcmp((input + index)->type, search) == 0)
+        {
+            temp = *(input + index);
+            addBook(result, totalBooks, temp);
+        }
+    }
+    return result;
 }
