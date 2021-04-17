@@ -33,6 +33,7 @@ void removeBook(book_st *output, int &id_need_to_find, int &numberBooks);
 void enterType(char search[30]);
 void addBook(book_st *input, int &numberBooks, const book_st book);
 book_st *findBookByType(book_st *input, int numberBooks, int totalBooks, char search[30]);
+void print(book_st *output, int numberBooks);
 int main()
 {
     FILE *file;
@@ -271,4 +272,21 @@ book_st *findBookByType(book_st *input, int numberBooks, int totalBooks, char se
         }
     }
     return result;
+}
+void print(book_st *output, int numberBooks)
+{ 
+    //ham xuat
+    if (numberBooks == 0)
+    {
+        printf("Loi !!!\n");
+    }
+    else
+    {
+        printf("\nId ||Ten\t\t||Tac gia\t\t\t     ||The loai\t\t\t||Gia tien");
+        for (int index = 0; index < numberBooks; index++)
+        {
+            printf("\n%-3d||%-17s\t||%-21s(%-2d/%-2d/%-4d)  ||%-19s\t||%d", (output + index)->id, (output + index)->name, (output + index)->author->name, (output + index)->author->birthday->day, (output + index)->author->birthday->month, (output + index)->author->birthday->year, (output + index)->type, (output + index)->price);
+        }
+    }
+    printf("\n");
 }
