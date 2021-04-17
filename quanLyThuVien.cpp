@@ -34,6 +34,7 @@ void enterType(char search[30]);
 void addBook(book_st *input, int &numberBooks, const book_st book);
 book_st *findBookByType(book_st *input, int numberBooks, int totalBooks, char search[30]);
 void print(book_st *output, int numberBooks);
+void arrangeBook(book_st *output, int numberBooks);
 int main()
 {
     FILE *file;
@@ -289,4 +290,21 @@ void print(book_st *output, int numberBooks)
         }
     }
     printf("\n");
+}
+void arrangeBook(book_st *output, int numberBooks)
+{ 
+    //sap xep sach
+    book_st temp;
+    for (int i = 0; i < numberBooks - 1; i++)
+    {
+        for (int j = i + 1; j < numberBooks; j++)
+        {
+            if (strcmp((output + i)->type, (output + j)->type) < 0)
+            {
+                temp = *(output + i);
+                *(output + i) = *(output + j);
+                *(output + j) = temp;
+            }
+        }
+    }
 }
