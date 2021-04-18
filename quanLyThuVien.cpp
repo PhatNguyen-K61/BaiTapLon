@@ -35,6 +35,7 @@ void addBook(book_st *input, int &numberBooks, const book_st book);
 book_st *findBookByType(book_st *input, int numberBooks, int totalBooks, char search[30]);
 void print(book_st *output, int numberBooks);
 void arrangeBook(book_st *output, int numberBooks);
+void exportBook(FILE *file, char *path, book_st *output, int numberBooks);
 int main()
 {
     FILE *file;
@@ -306,4 +307,16 @@ void arrangeBook(book_st *output, int numberBooks)
             }
         }
     }
+}
+void exportBook(FILE *file, char *path, book_st *output, int numberBooks)
+{ 
+    //xuat sach ra file
+    char *mode = "ab";
+    file = fopen(path, mode);
+    fprintf(file, "\nId ||Ten\t\t\t\t\t||Tac gia\t\t\t\t\t\t\t\t||The loai\t\t\t\t||Gia tien");
+    for (int index = 0; index < numberBooks; index++)
+    {
+        fprintf(file, "\n%-3d||%-20s\t||%-24s(%-2d/%-2d/%-4d)  ||%-17s\t\t||%d", (output + index)->id, (output + index)->name, (output + index)->author->name, (output + index)->author->birthday->day, (output + index)->author->birthday->month, (output + index)->author->birthday->year, (output + index)->type, (output + index)->price);
+    }
+    fclose(file);
 }
