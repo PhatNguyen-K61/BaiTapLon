@@ -48,6 +48,7 @@ int main()
     int id_need_to_find;
     bookList = (book_st *)malloc(sizeof(book_st));
     system("color b0");
+    menu(file, output_path, bookList, numberBooks, totalBooks, search, id_need_to_find);
     if(bookList != NULL){
         free(bookList);
     }
