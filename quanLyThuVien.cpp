@@ -97,7 +97,20 @@ bool validDay(Date *check)
     }
     return validDay;
 }
-
+void enter(Date *input)
+{ //Nhap ngay thang nam
+    printf("\nNgay: ");
+    scanf("%d", &input->day);
+    printf("Thang: ");
+    scanf("%d", &input->month);
+    do{
+    printf("Nam: ");
+    scanf("%d", &input->year);
+    if(input->year > 2021 || input->year <= 0){
+        printf("*Nhap lai nam sinh*\n");
+    }
+    }while(input->year > 2021 || input->year <= 0);
+}
 void enter(Author *input)
 {
     //Nhap thong tin tac gia (gom co ham nhap ngay thang nam)
