@@ -36,6 +36,7 @@ book_st *findBookByType(book_st *input, int numberBooks, int totalBooks, char se
 void print(book_st *output, int numberBooks);
 void arrangeBook(book_st *output, int numberBooks);
 void exportBook(FILE *file, char *path, book_st *output, int numberBooks);
+void menu(FILE *file, char *path, book_st *input, int numberBooks, int totalBooks, char search[30], int id_need_to_find);
 int main()
 {
     FILE *file;
@@ -319,4 +320,60 @@ void exportBook(FILE *file, char *path, book_st *output, int numberBooks)
         fprintf(file, "\n%-3d||%-20s\t||%-24s(%-2d/%-2d/%-4d)  ||%-17s\t\t||%d", (output + index)->id, (output + index)->name, (output + index)->author->name, (output + index)->author->birthday->day, (output + index)->author->birthday->month, (output + index)->author->birthday->year, (output + index)->type, (output + index)->price);
     }
     fclose(file);
+}
+void menu(FILE *file, char *path, book_st *input, int numberBooks, int totalBooks, char search[30], int id_need_to_find)
+{ 
+    //ham menu
+    int choise;
+    do
+    {
+        system("cls");
+        printf("\n\t\t\t\t|--------------------------MENU-----------------------|\n");
+        printf("\t\t\t\t|1. Nhap du lieu cua tung quyen sach.\t\t      |\n");
+        printf("\t\t\t\t|2. Sap xep, thong ke va hien thi thong tin\t      |\n\t\t\t\t|   chi tiet cua tung quyen sach theo the loai (Z->A).|\n");
+        printf("\t\t\t\t|3. Sua thong tin sach\t\t\t\t      |\n");
+        printf("\t\t\t\t|4. Xoa thong tin sach\t\t\t\t      |\n");
+        printf("\t\t\t\t|5. Tim quyen sach theo the loai\t\t      |\n");
+        printf("\t\t\t\t|6. Ghi vao tap tin nhi phan book.dat.\t\t      |\n");
+        printf("\t\t\t\t|7. Thoat\t\t\t\t\t      |\n");
+        printf("\t\t\t\t|-----------------------------------------------------|\n");
+        printf("\n--> Lua chon cua ban: ");
+        scanf("%d", &choise);
+        switch (choise)
+        {
+        case 1:
+            enterBooks(input, numberBooks);
+            system("pause");
+            break;
+        case 2:
+            arrangeBook(input, numberBooks);
+            print(input, numberBooks);
+            printTypeBooks(input, numberBooks);
+            system("pause");
+            break;
+        case 3:
+            editBook(input, id_need_to_find, numberBooks);
+            system("pause");
+            break;
+        case 4:
+            removeBook(input, id_need_to_find, numberBooks);
+            system("pause");
+            break;
+        case 5:
+            enterType(search);
+            print(findBookByType(input, numberBooks, totalBooks, search), countBooksByType(input, numberBooks, search));
+            system("pause");
+            break;
+        case 6:
+            exportBook(file, path, input, numberBooks);
+            system("pause");
+            break;
+        case 7:
+            break;
+        default:
+            printf("Hay nhap lai\n");
+            system("pause");
+            break;
+        }
+    } while (choise != 7);
 }
