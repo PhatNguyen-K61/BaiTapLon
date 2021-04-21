@@ -340,3 +340,45 @@ int enterchoice()
     scanf("%d", &Choice);
 	return Choice;
 }
+void menu(FILE *file, char *path, book_st *input, int numberBooks, int totalBooks, char search[30], int id_need_to_find)
+{ 
+    //ham menu
+    int choise;
+    while ((choise=enterchoice()) != 7)
+    {
+        switch (choise)
+        {
+        case 1:
+            enterBooks(input, numberBooks);
+            system("pause");
+            break;
+        case 2:
+            arrangeBook(input, numberBooks);
+            print(input, numberBooks);
+            printTypeBooks(input, numberBooks);
+            system("pause");
+            break;
+        case 3:
+            editBook(input, id_need_to_find, numberBooks);
+            system("pause");
+            break;
+        case 4:
+            removeBook(input, id_need_to_find, numberBooks);
+            system("pause");
+            break;
+        case 5:
+            enterType(search);
+            print(findBookByType(input, numberBooks, totalBooks, search), countBooksByType(input, numberBooks, search));
+            system("pause");
+            break;
+        case 6:
+            exportBook(file, path, input, numberBooks);
+            system("pause");
+            break;
+        default:
+            printf("Hay nhap lai\n");
+            system("pause");
+            break;
+        }
+    }
+}
