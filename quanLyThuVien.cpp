@@ -36,7 +36,6 @@ book_st *findBookByType(book_st *input, int numberBooks, int totalBooks, char se
 void print(book_st *output, int numberBooks);
 void arrangeBook(book_st *output, int numberBooks);
 void exportBook(FILE *file, char *path, book_st *output, int numberBooks);
-int enterchoice();
 void menu(FILE *file, char *path, book_st *input, int numberBooks, int totalBooks, char search[30], int id_need_to_find);
 int main()
 {
@@ -324,29 +323,24 @@ void exportBook(FILE *file, char *path, book_st *output, int numberBooks)
     }
     fclose(file);
 }
-int enterchoice()
-{
-	int Choice;
-	system("cls");
-    printf("\n\t\t\t\t|--------------------------MENU-----------------------|\n");
-    printf("\t\t\t\t|1. Nhap du lieu cua tung quyen sach.\t\t      |\n");
-    printf("\t\t\t\t|2. Sap xep, thong ke va hien thi thong tin\t      |\n\t\t\t\t|   chi tiet cua tung quyen sach theo the loai (Z->A).|\n");
-    printf("\t\t\t\t|3. Sua thong tin sach\t\t\t\t      |\n");
-    printf("\t\t\t\t|4. Xoa thong tin sach\t\t\t\t      |\n");
-    printf("\t\t\t\t|5. Tim quyen sach theo the loai\t\t      |\n");
-    printf("\t\t\t\t|6. Ghi vao tap tin nhi phan book.dat.\t\t      |\n");
-    printf("\t\t\t\t|7. Thoat\t\t\t\t\t      |\n");
-    printf("\t\t\t\t|-----------------------------------------------------|\n");
-    printf("\n--> Lua chon cua ban: ");
-    scanf("%d", &Choice);
-	return Choice;
-}
 void menu(FILE *file, char *path, book_st *input, int numberBooks, int totalBooks, char search[30], int id_need_to_find)
 { 
     //ham menu
     int choise;
-    while ((choise=enterchoice()) != 7)
+    do
     {
+        system("cls");
+        printf("\n\t\t\t\t|--------------------------MENU-----------------------|\n");
+        printf("\t\t\t\t|1. Nhap du lieu cua tung quyen sach.\t\t      |\n");
+        printf("\t\t\t\t|2. Sap xep, thong ke va hien thi thong tin\t      |\n\t\t\t\t|   chi tiet cua tung quyen sach theo the loai (Z->A).|\n");
+        printf("\t\t\t\t|3. Sua thong tin sach\t\t\t\t      |\n");
+        printf("\t\t\t\t|4. Xoa thong tin sach\t\t\t\t      |\n");
+        printf("\t\t\t\t|5. Tim quyen sach theo the loai\t\t      |\n");
+        printf("\t\t\t\t|6. Ghi vao tap tin nhi phan book.dat.\t\t      |\n");
+        printf("\t\t\t\t|7. Thoat\t\t\t\t\t      |\n");
+        printf("\t\t\t\t|-----------------------------------------------------|\n");
+        printf("\n--> Lua chon cua ban: ");
+        scanf("%d", &choise);
         switch (choise)
         {
         case 1:
@@ -376,10 +370,12 @@ void menu(FILE *file, char *path, book_st *input, int numberBooks, int totalBook
             exportBook(file, path, input, numberBooks);
             system("pause");
             break;
+        case 7:
+            break;
         default:
             printf("Hay nhap lai\n");
             system("pause");
             break;
         }
-    }
+    } while (choise != 7);
 }
